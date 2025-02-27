@@ -1,16 +1,17 @@
 import {Button} from '/src/components/Button.jsx'
 
-export function LeftSideColumn() {
+export function LeftSideColumn({ onFileLoad }) {
 
     return (
-      <>
-        <div className="leftSideColumn"> 
-        <h2>Datasets</h2>
-      <Button text="Dataset 1" filename="dataset1.txt" />
-      <Button text="Dataset 2" filename="dataset2.txt" />
-      <Button text="Dataset 3" filename="dataset3.txt" />
-      <Button text="Dataset 4" filename="dataset4.txt" />
-        </div>
-      </>
+      <div className="leftSideColumn"> 
+        <h3>Datasets</h3>
+        <Button text="chameleon" onFileLoad={onFileLoad} />
+        <Button text="flame" onFileLoad={onFileLoad}/>
+        <Button text="Jain" onFileLoad={onFileLoad}/>
+        <Button text="pathBased" onFileLoad={onFileLoad}/>
+        <Button text="s1" onFileLoad={onFileLoad}/>
+        <Button text="spiral" onFileLoad={onFileLoad} />
+        <Button text="zahn" onFileLoad={onFileLoad}/>
+      </div>
     )
   }

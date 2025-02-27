@@ -2,14 +2,13 @@
 
 
 :root {
-  --primary-color: rgb(151, 194, 217);
-  --secondary-color: #710f0f; /* Supporting color (e.g., navbar, footer) */
-  --accent-color: #F76C6C;    /* Highlight color */
-  --cta-color: #a8d0e6;       /* Call-to-action button */
-  --text-color: #EAE7DC;         /* Default text color */
-  --link-color: #0056b3;      /* Link color */
+  --primary-color: #F6DCAC;
+  --secondary-color: #6C3F18; 
+  --accent-color: #EC8922;   
+  --cta-color: #D52429;      
+  --text-color: #220e07;      
+  --link-color: #F1602C;    
 }
-
 
 h1, h2, h3 {
   color: var(--secondary-color);
@@ -63,9 +62,6 @@ button {
 button:hover {
   background-color: var(--cta-color);
   color: black;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  filter: drop-shadow(0 0 1em var(--cta-color));
 }
 

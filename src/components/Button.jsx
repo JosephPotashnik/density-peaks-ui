@@ -1,10 +1,21 @@
 import React from 'react';
+import * as d3 from "d3";
 
-export function Button({ text, filename }) {
+const handleClick = (filename, onFileLoad) => {
+  d3.csv(`/src/assets/datasets/${filename}.csv`)
+    .then((data) => {
+      console.log("Full dataset loaded:", data);
+      onFileLoad(data); // Pass the full array of objects
+    })
+    .catch((error) => {
+      console.error("Error loading CSV:", error);
+    });
+};
+
+export function Button({ text, onFileLoad }) {
   return (
-    <button>
-      {text} {/* Display the button text */}
-      
+    <button onClick={() => handleClick(text, onFileLoad)} >
+      {text} 
     </button>
   );
 }
