@@ -4,7 +4,6 @@ import * as d3 from "d3";
 const handleClick = (filename, onFileLoad) => {
   d3.csv(`/src/assets/datasets/${filename}.csv`)
     .then((data) => {
-      console.log("Full dataset loaded:", data);
       onFileLoad(data); // Pass the full array of objects
     })
     .catch((error) => {

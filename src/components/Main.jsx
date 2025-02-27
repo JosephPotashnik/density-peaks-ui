@@ -1,4 +1,6 @@
 import { LeftSideColumn } from '/src/components/LeftSideColumn.jsx'
+import { RightSideColumn } from '/src/components/RightSideColumn.jsx'
+
 import { MainColumn } from '/src/components/MainColumn.jsx'
 import React, { useState } from "react";
 
@@ -16,7 +18,8 @@ export function Main() {
       <div className='main'>
         <LeftSideColumn onFileLoad={handleFileLoad} />
         <MainColumn fileData={fileData} />
-        </div>
+        <RightSideColumn />
+      </div>
       </>
     )
   }

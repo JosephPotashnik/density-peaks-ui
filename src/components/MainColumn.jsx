@@ -43,15 +43,6 @@ const yScale = d3.scaleLinear()
     .domain([0, d3.max(data, d => d.y)]) // Domain is from 0 to max value in y
     .range([height, 0]);
 
-// Add X axis
-svg.append("g")
-  .attr("transform", "translate(0," + height + ")")
-  .call(d3.axisBottom(xScale));
-
-// Add Y axis
-svg.append("g")
-  .call(d3.axisLeft(yScale));
-
 // Add dots (the scatterplot points)
 svg.selectAll("circle")
   .data(data)
@@ -67,6 +58,7 @@ svg.selectAll("circle")
 
     return (
       <div className="mainColumn">
+        <h3>Graph</h3>
         <div id="scatterplot"> </div>
       </div>
     )
