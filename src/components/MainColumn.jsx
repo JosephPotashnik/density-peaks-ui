@@ -9,15 +9,45 @@ export function MainColumn({ fileData, algorithmParams , algorithmToRun, renderV
   }, [fileData]); // Runs when fileData changes
 
   useEffect(() => {
+    async function callBackend() {
     if (algorithmToRun) {
-      clusterize(algorithmToRun, algorithmParams);
+      let res = await clusterize(algorithmToRun, algorithmParams);
     }
+  }
+  callBackend();
   }, [algorithmToRun, renderVersion]); 
 
-  const clusterize = (algorithmName, algorithmParams) => 
+  const clusterize = async (algorithmName, algorithmParams) => 
   {
+
     console.log(`I am about to cluster ${algorithmName} with the params ${JSON.stringify(algorithmParams[algorithmName])}`);
+
+  let data = d3.select('#scatterplot').selectAll('circle').data();
+  var samples = [];
+  for (let i = 0; i < data.length; i++)
+      samples[i] = [data[i].x, data[i].y];
+
+    const bodyData = 
+    {
+      matrix: samples,
+      k : algorithmParams[algorithmName].find(param => param.name === "K").value
+    };
+
+    try {
+      const response = await fetch('http://localhost:5072/KNN', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify( bodyData) 
+      });
+
+      const data = await response.json();
+     
   }
+  catch (error)
+  {
+    console.log("error");
+  };
+}
 
   const handleFileDataChange = (data) => {
     
