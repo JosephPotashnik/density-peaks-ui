@@ -27,7 +27,6 @@ const svg = d3.select("#scatterplot")
 .append("g")
 .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-console.log("Received data:", data);
 // Convert the x and y fields to numbers
 data.forEach(function(d) {
     d.x = +d.x;
