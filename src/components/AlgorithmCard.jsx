@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { ClusterizeButton } from '/src/components/ClusterizeButton.jsx'
 
-export function AlgorithmCard({ algorithmName, algorithmParams , onAlgorithmParamsLoad}) {
+export function AlgorithmCard({ algorithmName, algorithmParams , onAlgorithmParamsLoad, onAlgorithmToRun}) {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleCard = () => setIsOpen(!isOpen);
@@ -33,7 +33,7 @@ export function AlgorithmCard({ algorithmName, algorithmParams , onAlgorithmPara
          </p>
           ))}
         </div>
-        <ClusterizeButton algorithmParams={algorithmParams} onAlgorithmParamsLoad = {onAlgorithmParamsLoad}/>
+        <ClusterizeButton algorithmName={algorithmName} onAlgorithmToRun = {onAlgorithmToRun}/>
         </>
 
       )}

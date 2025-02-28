@@ -1,13 +1,23 @@
 import React, { useEffect } from "react";
 import * as d3 from "d3";
 
-export function MainColumn({ fileData, algorithmParams }) {
+export function MainColumn({ fileData, algorithmParams , algorithmToRun, renderVersion}) {
   useEffect(() => {
     if (fileData) {
       handleFileDataChange(fileData);
     }
   }, [fileData]); // Runs when fileData changes
 
+  useEffect(() => {
+    if (algorithmToRun) {
+      clusterize(algorithmToRun, algorithmParams);
+    }
+  }, [algorithmToRun, renderVersion]); 
+
+  const clusterize = (algorithmName, algorithmParams) => 
+  {
+    console.log(`I am about to cluster ${algorithmName} with the params ${JSON.stringify(algorithmParams[algorithmName])}`);
+  }
 
   const handleFileDataChange = (data) => {
     

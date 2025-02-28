@@ -7,6 +7,8 @@ import React, { useState } from "react";
 export function Main() {
 
   const [fileData, setFileData] = useState(null); // State to store file data
+  const [algorithmToRun, setAlgorithmToRun] = useState(null);
+  const [renderVersion, setRenderVersion] = useState(0); // This is used to force re-renders
   const [algorithmParams, setAlgorithmParams] = useState(
     {
       DensityPeaks: [
@@ -23,6 +25,15 @@ export function Main() {
       ]
     }
   );
+
+  const handleAlgorithmToRun = (algorithmName) => {
+    console.log(`algorithmToRun: ${algorithmName}`);
+    
+    // Set the algorithm name as usual
+    setAlgorithmToRun(algorithmName);
+    setRenderVersion(prev => prev + 1); // Force re-render by updating version  
+
+  };
 
   const handleAlgorithmParamsLoad = (algorithmName, updatedParams) => {
     
@@ -44,8 +55,8 @@ export function Main() {
       <>
       <div className='main'>
         <LeftSideColumn onFileLoad={handleFileLoad} />
-        <MainColumn fileData={fileData} algorithmParams={algorithmParams} />
-        <RightSideColumn algorithmParams={algorithmParams} onAlgorithmParamsLoad={handleAlgorithmParamsLoad} />
+        <MainColumn fileData={fileData} algorithmParams={algorithmParams} algorithmToRun={algorithmToRun} renderVersion={renderVersion}/>
+        <RightSideColumn algorithmParams={algorithmParams} onAlgorithmParamsLoad={handleAlgorithmParamsLoad} onAlgorithmToRun={handleAlgorithmToRun}/>
       </div>
       </>
     )

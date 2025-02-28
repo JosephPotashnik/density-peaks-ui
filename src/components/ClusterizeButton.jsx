@@ -4,9 +4,9 @@ const handleClick = (algorithmParams, onAlgorithmParamsLoad) => {
   onAlgorithmParamsLoad(algorithmParams);
 };
 
-export function ClusterizeButton({algorithmParams, onAlgorithmParamsLoad}) {
+export function ClusterizeButton({algorithmName, onAlgorithmToRun}) {
   return (
-    <button onClick= {()=> handleClick(algorithmParams, onAlgorithmParamsLoad)}>
+    <button onClick= {()=> handleClick(algorithmName, onAlgorithmToRun)}>
       Run!
     </button>
   );
