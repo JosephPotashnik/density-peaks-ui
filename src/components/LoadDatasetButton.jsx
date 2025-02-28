@@ -11,7 +11,7 @@ const handleClick = (filename, onFileLoad) => {
     });
 };
 
-export function Button({ text, onFileLoad }) {
+export function LoadDatasetButton({ text, onFileLoad }) {
   return (
     <button onClick={() => handleClick(text, onFileLoad)} >
       {text} 

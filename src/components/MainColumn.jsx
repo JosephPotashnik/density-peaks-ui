@@ -1,8 +1,7 @@
 import React, { useEffect } from "react";
 import * as d3 from "d3";
 
-
-export function MainColumn({ fileData }) {
+export function MainColumn({ fileData, algorithmParams }) {
   useEffect(() => {
     if (fileData) {
       handleFileDataChange(fileData);
@@ -13,9 +12,9 @@ export function MainColumn({ fileData }) {
   const handleFileDataChange = (data) => {
     
     // Set dimensions and margins for the graph
-const margin = {top: 20, right: 30, bottom: 40, left: 40},
-width = 500 - margin.left - margin.right,
-height = 400 - margin.top - margin.bottom;
+const margin = {top: 20, right: 30, bottom: 40, left: 140},
+width = 500 ,
+height = 400 ;
 
 d3.select('#scatterplot').selectAll('*').remove();
 
