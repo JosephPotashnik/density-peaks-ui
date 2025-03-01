@@ -52,16 +52,17 @@ export function MainColumn({ fileData, algorithmParams , algorithmToRun, renderV
 
     const bodyData = 
     {
-      samples: samples,
+      Samples: samples,
     };
     
     algorithmParams[algorithmName].forEach(param => {
       bodyData[param.name] = param.value; 
     });
     
+    console.log(bodyData);
     try 
     {
-      const response = await fetch('https://localhost:57556/KNN', {
+      const response = await fetch('https://localhost:57556/'+ algorithmName, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(bodyData) 

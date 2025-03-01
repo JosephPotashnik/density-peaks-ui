@@ -12,16 +12,16 @@ export function Main() {
   const [algorithmParams, setAlgorithmParams] = useState(
     {
       DensityPeaks: [
-        { name: 'Cutoff Distance', value: '10' }
+        { name: 'CutoffDistance', value: '10' }
       ],
       KNN: [
         { name: 'k', value: '10' },
-        { name: 'Tuning Type', value: 'Fine' },
+        { name: 'TuningType', value: 'FineTuning' },
       ],
       MultiManifold:  [
         { name: 'k', value: '5' },
         { name: 'm', value: '10' },
-        { name: 'Tuning Type', value: 'FineTuning' },
+        { name: 'TuningType', value: 'FineTuning' },
       ]
     }
   );

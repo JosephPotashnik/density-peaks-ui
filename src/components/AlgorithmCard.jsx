@@ -10,6 +10,7 @@ export function AlgorithmCard({ algorithmName, algorithmParams , onAlgorithmPara
     console.log(`input change at ${algorithmName}`);
     const newParams = [...algorithmParams];
     newParams[index].value = event.target.value;
+
     onAlgorithmParamsLoad(algorithmName, newParams); 
   };
 
@@ -24,12 +25,23 @@ export function AlgorithmCard({ algorithmName, algorithmParams , onAlgorithmPara
           {algorithmParams.map((param, index) => (
            <p key={index} style={styles.param}>
            <strong>{param.name}: </strong>
-           <input
-             type="text"
-             value={param.value}
-             onChange={(e) => handleInputChange(index, e)}
-             style={styles.input}
-           />
+           {param.name === "TuningType" ? (
+             <select
+               value={param.value}
+               onChange={(e) => handleInputChange(index, e)}
+               style={styles.input}
+             >
+               <option value="FineTuning">FineTuning</option>
+               <option value="CoarseTuning">CoarseTuning</option>
+             </select>
+           ) : (
+             <input
+               type="number"
+               value={param.value}
+               onChange={(e) => handleInputChange(index, e)}
+               style={styles.input}
+             />
+           )}
          </p>
           ))}
         </div>
