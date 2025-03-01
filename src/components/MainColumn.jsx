@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import * as d3 from "d3";
 
+
 export function MainColumn({ fileData, algorithmParams , algorithmToRun, renderVersion}) {
   useEffect(() => {
     if (fileData) {
@@ -62,7 +63,8 @@ export function MainColumn({ fileData, algorithmParams , algorithmToRun, renderV
     console.log(bodyData);
     try 
     {
-      const response = await fetch('https://localhost:57556/'+ algorithmName, {
+      const url = import.meta.env.VITE_BACKEND_URL;
+      const response = await fetch(url+algorithmName, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(bodyData) 
