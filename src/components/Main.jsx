@@ -15,13 +15,13 @@ export function Main() {
         { name: 'Cutoff Distance', value: '10' }
       ],
       KNN: [
-        { name: 'K', value: 'Value A' },
+        { name: 'k', value: '10' },
         { name: 'Tuning Type', value: 'Fine' },
       ],
       MultiManifold:  [
-        { name: 'K', value: '5' },
-        { name: 'M', value: '10' },
-        { name: 'Tuning Type', value: 'Fine' },
+        { name: 'k', value: '5' },
+        { name: 'm', value: '10' },
+        { name: 'Tuning Type', value: 'FineTuning' },
       ]
     }
   );

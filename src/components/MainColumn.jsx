@@ -8,6 +8,32 @@ export function MainColumn({ fileData, algorithmParams , algorithmToRun, renderV
     }
   }, [fileData]); // Runs when fileData changes
 
+  const colors = [
+    '#808080',  // (Gray)
+    '#7D9600', //(Olive Green)
+    '#2D0B38', //(Deep Purple)
+    '#3C2315',//(Rich Espresso)
+    '#CC9900', //(Goldenrod)
+    '#4A1D07', //(Dark Brown)
+    '#8C3610', //(Burnt Orange)
+    '#C73E1D', //(Deep Red-Orange)
+    '#D91E3D', //(Crimson)
+    '#7E0726', //(Dark Raspberry)
+
+    '#5C2F8E', //(Royal Purple)
+    '#17307F', //(Deep Navy Blue)
+    '#0056A6', //(Strong Blue)
+    '#00768A', //(Teal)
+    '#145C3D', //(Forest Green)
+    '#338C1F', //(Vibrant Green)
+
+    '#E66400', //(Bright Orange)
+    '#AA2266', //(Deep Magenta)
+    '#782E4B', //(Muted Burgundy)
+    '#AF3325', //(Brick Red)
+    '#5A4B35', //(Warm Taupe)
+  ];
+
   useEffect(() => {
     async function callBackend() {
     if (algorithmToRun) {
@@ -19,34 +45,40 @@ export function MainColumn({ fileData, algorithmParams , algorithmToRun, renderV
 
   const clusterize = async (algorithmName, algorithmParams) => 
   {
-
-    console.log(`I am about to cluster ${algorithmName} with the params ${JSON.stringify(algorithmParams[algorithmName])}`);
-
-  let data = d3.select('#scatterplot').selectAll('circle').data();
-  var samples = [];
-  for (let i = 0; i < data.length; i++)
-      samples[i] = [data[i].x, data[i].y];
+    let data = d3.select('#scatterplot').selectAll('circle').data();
+    var samples = [];
+    for (let i = 0; i < data.length; i++)
+        samples[i] = [data[i].x, data[i].y];
 
     const bodyData = 
     {
-      matrix: samples,
-      k : algorithmParams[algorithmName].find(param => param.name === "K").value
+      samples: samples,
     };
-
-    try {
-      const response = await fetch('http://localhost:5072/KNN', {
+    
+    algorithmParams[algorithmName].forEach(param => {
+      bodyData[param.name] = param.value; 
+    });
+    
+    try 
+    {
+      const response = await fetch('https://localhost:57556/KNN', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify( bodyData) 
+          body: JSON.stringify(bodyData) 
       });
 
       const data = await response.json();
+      console.log(data);
+
+      d3.select('#scatterplot').selectAll("circle").each(function(d, i) {
+      // 'i' corresponds to the index of each circle, which can be used to access the clusters array
+      d3.select(this).style("fill", colors[data[i]]);  // Set fill color based on clusters array
+      });
      
   }
-  catch (error)
-  {
-    console.log("error");
-  };
+  catch (error) {
+    console.error('Error:', error);
+  }
 }
 
   const handleFileDataChange = (data) => {
