@@ -1,3 +1,3 @@
 # Density Peaks Clustering Front-End (React + Vite)
 
-See Also https://density-peaks-ui.vercel.app/
+Live version <a href="http://dp-clustering.s3-website.eu-north-1.amazonaws.com/">here</a>
